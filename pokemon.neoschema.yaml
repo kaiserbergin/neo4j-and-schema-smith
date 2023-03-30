@@ -1,0 +1,36 @@
+graphs:
+  - name: neo4j
+    nodes:
+      - label: Pokemon
+        properties:
+          - name: id
+            type: integer
+          - name: name
+            type: string
+          - name: type
+            type: string
+      - label: Trainer
+        properties:
+          - name: id
+            type: integer
+          - name: name
+            type: string
+    relationships:
+      - type: BELONGS_TO 
+        connections:
+          - Pokemon->Trainer
+    constraints:
+      - name: PokemonId_UQ
+        type: unique
+        entity:
+          id: Pokemon
+          type: node
+          properties:
+            - id
+      - name: TrainerId_UQ
+        type: unique
+        entity:
+          id: Trainer
+          type: node
+          properties:
+            - id
